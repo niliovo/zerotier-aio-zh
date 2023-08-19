@@ -22,14 +22,14 @@
 - host模式
 
 ```sh
-docker run -itd --name ztncui-aio-zh --hostname ztncui-aio-zh --net host --restart always --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun -v /your_path/ztncui-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc -v /your_path/ztncui-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one -v /your_path/ztncui-aio-zh/etc/zt-mkworld:/etc/zt-mkworld -e PUID=0 -e PGID=0 -e TZ=Asia/Shanghai -e AUTOGEN_PLANET=0 -e NODE_ENV=production -e HTTPS_HOST=xxx.xxx.xxx.xxx -e HTTPS_PORT=3443 -e HTTP_PORT=3000 -e HTTP_ALL_INTERFACES=yes -e MYDOMAIN=ztncui.docker.test -e ZTNCUI_PASSWD=YourPassWD -e MYADDR=PublicIP --privileged=true niliaerith/zerotier-aio-zh:latest
+docker run -itd --name zerotier-aio-zh --hostname zerotier-aio-zh --net host --restart always --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun -v /your_path/zerotier-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc -v /your_path/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one -v /your_path/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld -e PUID=0 -e PGID=0 -e TZ=Asia/Shanghai -e AUTOGEN_PLANET=0 -e NODE_ENV=production -e HTTPS_HOST=xxx.xxx.xxx.xxx -e HTTPS_PORT=3443 -e HTTP_PORT=3000 -e HTTP_ALL_INTERFACES=yes -e MYDOMAIN=ztncui.docker.test -e ZTNCUI_PASSWD=YourPassWD -e MYADDR=PublicIP --privileged=true niliaerith/zerotier-aio-zh:latest
 
 ```
 
 - bridge模式
 
 ```sh
-docker run -itd --name ztncui-aio-zh --hostname ztncui-aio-zh --net bridge -p3000:3000 -p3180:3180 -p3443:3443 -p9993:9993/udp --restart always --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun -v /your_path/ztncui-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc -v /your_path/ztncui-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one -v /your_path/ztncui-aio-zh/etc/zt-mkworld:/etc/zt-mkworld -e PUID=0 -e PGID=0 -e TZ=Asia/Shanghai -e AUTOGEN_PLANET=0 -e NODE_ENV=production -e HTTPS_HOST=xxx.xxx.xxx.xxx -e HTTPS_PORT=3443 -e HTTP_PORT=3000 -e HTTP_ALL_INTERFACES=yes -e MYDOMAIN=ztncui.docker.test -e ZTNCUI_PASSWD=YourPassWD -e MYADDR=PublicIP --privileged=true niliaerith/zerotier-aio-zh:latest
+docker run -itd --name zerotier-aio-zh --hostname zerotier-aio-zh --net bridge -p3000:3000 -p3180:3180 -p3443:3443 -p9993:9993/udp --restart always --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun -v /your_path/zerotier-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc -v /your_path/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one -v /your_path/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld -e PUID=0 -e PGID=0 -e TZ=Asia/Shanghai -e AUTOGEN_PLANET=0 -e NODE_ENV=production -e HTTPS_HOST=xxx.xxx.xxx.xxx -e HTTPS_PORT=3443 -e HTTP_PORT=3000 -e HTTP_ALL_INTERFACES=yes -e MYDOMAIN=ztncui.docker.test -e ZTNCUI_PASSWD=YourPassWD -e MYADDR=PublicIP --privileged=true niliaerith/zerotier-aio-zh:latest
 ```
 
 ## Docker Compose使用指南
@@ -38,10 +38,10 @@ docker run -itd --name ztncui-aio-zh --hostname ztncui-aio-zh --net bridge -p300
 - host模式
 
 ```compose.yml
-  ztncui-aio-zh:
-    image: niliaerith/ztncui-aio-zh:latest
-    container_name: ztncui-aio-zh
-    hostname: ztncui-aio-zh
+  zerotier-aio-zh:
+    image: niliaerith/zerotier-aio-zh:latest
+    container_name: zerotier-aio-zh
+    hostname: zerotier-aio-zh
     restart: always
     cap_add:
       - ALL
@@ -49,9 +49,9 @@ docker run -itd --name ztncui-aio-zh --hostname ztncui-aio-zh --net bridge -p300
       - /dev/net/tun
     network_mode: host
     volumes:
-      - /your_path/ztncui-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc
-      - /your_path/ztncui-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one
-      - /your_path/ztncui-aio-zh/etc/zt-mkworld:/etc/zt-mkworld
+      - /your_path/zerotier-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc
+      - /your_path/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one
+      - /your_path/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld
     environment:
       - PUID=0
       - PGID=0
@@ -71,10 +71,10 @@ docker run -itd --name ztncui-aio-zh --hostname ztncui-aio-zh --net bridge -p300
 - bridge模式
 
 ```compose.yml
-  ztncui-aio-zh:
-    image: niliaerith/ztncui-aio-zh:latest
-    container_name: ztncui-aio-zh
-    hostname: ztncui-aio-zh
+  zerotier-aio-zh:
+    image: niliaerith/zerotier-aio-zh:latest
+    container_name: zerotier-aio-zh
+    hostname: zerotier-aio-zh
     restart: always
     cap_add:
       - ALL
@@ -87,9 +87,9 @@ docker run -itd --name ztncui-aio-zh --hostname ztncui-aio-zh --net bridge -p300
       - 3443:3443
       - 9993:9993/udp
     volumes:
-      - /your_path/ztncui-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc
-      - /your_path/ztncui-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one
-      - /your_path/ztncui-aio-zh/etc/zt-mkworld:/etc/zt-mkworld
+      - /your_path/zerotier-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc
+      - /your_path/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one
+      - /your_path/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld
     environment:
       - PUID=0
       - PGID=0
