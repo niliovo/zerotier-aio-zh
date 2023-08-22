@@ -96,7 +96,7 @@ sed -i "s|title: 'Delete member from '|title: '删除成员从 '|g" ztncui/src/c
 sed -i "s|title: 'Delete member from network',|title: '从网络中删除成员',|g" ztncui/src/controllers/networkController.js
 sed -i "s|title: 'Delete network',|title: '删除网络',|g" ztncui/src/controllers/networkController.js
 sed -i "s|title: 'Detail for network',|title: '网络详细信息',|g" ztncui/src/controllers/networkController.js
-sed -i "s|title: 'dns',|'ztncui控制器'|g" ztncui/src/controllers/networkController.js
+sed -i "s|title: 'dns',|'ZTNCUI控制器'|g" ztncui/src/controllers/networkController.js
 sed -i "s|title: 'Easy setup of network',|title: '网络的简易设置',|g" ztncui/src/controllers/networkController.js
 sed -i "s|title: 'ipAssignmentPools',|title: 'IP分配池',|g" ztncui/src/controllers/networkController.js
 sed -i "s|title: 'ipAssignments '|title: 'IP分配 '|g" ztncui/src/controllers/networkController.js
@@ -105,7 +105,7 @@ sed -i "s|title: 'Network member detail',|title: '网络成员详细信息',|g" 
 sed -i "s|title: 'Networks on this controller',|title: '此控制器上的网络',|g" ztncui/src/controllers/networkController.js
 sed -i "s|title: 'private',|title: '私有',|g" ztncui/src/controllers/networkController.js
 sed -i "s|title: 'routes',|title: '路由',|g" ztncui/src/controllers/networkController.js
-sed -i "s|title: 'ztncui',|title: 'ztncui控制器',|g" ztncui/src/controllers/networkController.js
+sed -i "s|title: 'ztncui',|title: 'ZTNCUI控制器',|g" ztncui/src/controllers/networkController.js
 sed -i "s|'Network setup succeeded'|'网络设置成功'|g" ztncui/src/controllers/networkController.js
 sed -i "s|title: 'ipAssignments',|title: 'IP分配',|g" ztncui/src/controllers/networkController.js
 
@@ -128,7 +128,7 @@ sed -i "s|title: 'Delete user',|title: '删除用户',|g" ztncui/src/controllers
 sed -i "s|('Cannot delete non-existent route target');|('无法删除不存在的路由目标');|g" ztncui/src/controllers/zt.js
 sed -i "s|('Route target is not unique');|('路由目标不是唯一的');|g" ztncui/src/controllers/zt.js
 
-sed -i "s|{title: 'ztncui'});|{title: 'ztncui控制器'});|g" ztncui/src/routes/index.js
+sed -i "s|{title: 'ztncui'});|{title: 'ZTNCUI控制器'});|g" ztncui/src/routes/index.js
 sed -i "s|'Access denied\!')|'拒绝访问\!')|g" ztncui/src/routes/index.js
 sed -i "s|title: 'Login',|title: '登录',|g" ztncui/src/routes/index.js
 sed -i "s|'Authenticated as '|'认证成功，用户为 '|g" ztncui/src/routes/index.js
@@ -150,8 +150,8 @@ sed -i "s|) Cancel|) 取消|g" ztncui/src/views/dns.pug
 sed -i "s|network controller UI|网络控制器用户界面|g" ztncui/src/views/front_door.pug
 
 sed -i "s|Logout|注销|g" ztncui/src/views/head_layout.pug
-sed -i "s|network controller UI by|网络控制器用户界面作者|g" ztncui/src/views/index.pug
-sed -i "s|a(href='https://key-networks.com' target='_blank') Key Networks|a(href='https://key-networks.com' target='_blank') Key Networks\na(href='https://github.com/niliovo/zerotier-aio-zh' target='_blank') (汉化作者nili)|g" ztncui/src/views/index.pug
+sed -i "s|network controller UI by|网络控制器用户界面汉化作者|g" ztncui/src/views/index.pug
+sed -i "s|a(href='https://key-networks.com' target='_blank') Key Networks|a(href='https://github.com/niliovo/zerotier-aio-zh' target='_blank') 倪狸|g" ztncui/src/views/index.pug
 sed -i "s|This network controller has a ZeroTier address of|该控制器的ZeroTier地址为|g" ztncui/src/views/index.pug
 sed -i "s|ZeroTier version|ZeroTier版本为|g" ztncui/src/views/index.pug
 sed -i "s|List all networks on this network controller|列出该网络控制器上的所有网络|g" ztncui/src/views/index.pug
