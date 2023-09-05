@@ -18,7 +18,13 @@
 
 ## Docker-Cli使用指南
 
-- amd64/arm64/armv7
+- armv7(armv7构建耗时超过6h导致GitHub Action无法完成构建镜像，请自行构建，命令如下)
+
+```
+git clone https://github.com/niliovo/zerotier-aio-zh.git && cd zerotier-aio-zh/dockerfile && docker build -t zerotier-aio-zh .
+```
+
+- amd64/arm64
 - host模式
 
 ```sh
@@ -34,7 +40,13 @@ docker run -itd --name zerotier-aio-zh --hostname zerotier-aio-zh --net bridge -
 
 ## Docker Compose使用指南
 
-- amd64/arm64/armv7
+- armv7(armv7构建耗时超过6h导致GitHub Action无法完成构建镜像，请自行构建，命令如下)
+
+```
+git clone https://github.com/niliovo/zerotier-aio-zh.git && cd zerotier-aio-zh/dockerfile && docker build -t zerotier-aio-zh .
+```
+
+- amd64/arm64
 - host模式
 
 ```compose.yml
@@ -149,7 +161,7 @@ docker run -itd --name zerotier-aio-zh --hostname zerotier-aio-zh --net bridge -
 
 - amd64
 - arm64
-- armv7(未测试)
+- armv7(未测试，需自行构建镜像)
 
 - ~~i386(node没有此版本，故不支持)~~
 
