@@ -5,6 +5,7 @@ curl -sL -o node_inst.sh https://deb.nodesource.com/setup_${NODEJS_MAJOR}.x
 bash node_inst.sh
 sudo apt install -y nodejs --no-install-recommends
 rm -f node_inst.sh
+npm config set registry  http://registry.npmjs.org/
 git clone https://github.com/kmahyyg/ztncui-aio.git tmp
 mv tmp/* /build
 sed -i "s|git clone https://github.com/key-networks/ztncui||g" build-ztncui.sh
