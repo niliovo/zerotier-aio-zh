@@ -3,7 +3,7 @@ apt update -y
 apt install curl gnupg2 ca-certificates zip unzip build-essential git sudo --no-install-recommends -y
 curl -sL -o node_inst.sh https://deb.nodesource.com/setup_${NODEJS_MAJOR}.x
 bash node_inst.sh
-sudo apt install -y nodejs
+sudo apt install -y nodejs --no-install-recommends
 rm -f node_inst.sh
 git clone https://github.com/kmahyyg/ztncui-aio.git tmp
 mv tmp/* /build
