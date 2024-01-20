@@ -1,4 +1,4 @@
-FROM debian:latest AS jsbuilder
+FROM node:slim AS jsbuilder
 ENV NODEJS_MAJOR=18
 ENV DEBIAN_FRONTEND=noninteractive
 
