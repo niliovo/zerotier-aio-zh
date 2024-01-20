@@ -1,5 +1,5 @@
-FROM debian:bullseye-slim AS jsbuilder
-ENV NODEJS_MAJOR=18
+FROM debian:latest AS jsbuilder
+ENV NODEJS_MAJOR=20
 ENV DEBIAN_FRONTEND=noninteractive
 
 LABEL org.opencontainers.image.source="https://github.com/kmahyyg/ztncui-aio"
@@ -12,7 +12,7 @@ COPY ztncui.sh .
 RUN chmod a+x ztncui.sh && ./ztncui.sh
 
 # BUILD GO UTILS
-FROM golang:bullseye AS gobuilder
+FROM golang:bookworm AS gobuilder
 WORKDIR /buildsrc
 COPY --from=jsbuilder /build/argon2g /buildsrc/argon2g
 COPY --from=jsbuilder /build/fileserv /buildsrc/fileserv
@@ -24,7 +24,7 @@ RUN apt update -y && \
     bash /buildsrc/build-gobinaries.sh
 
 # START RUNNER
-FROM debian:bullseye-slim AS runner
+FROM debian:bookworm-slim AS runner
 ENV DEBIAN_FRONTEND=noninteractive
 ENV AUTOGEN_PLANET=0
 WORKDIR /tmp
