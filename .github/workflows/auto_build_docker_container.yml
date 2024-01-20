@@ -2,9 +2,9 @@ name: 自动构建docker镜像
 
 on:
   schedule:
-    - cron: "21 19 * * 0"
-  watch:
-    types: started
+    - cron: "36 19 * * 0"
+  #watch:
+  #  types: started
   workflow_dispatch:
 
 #  push:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Check Out Repo 
+      - name: Check Out Repo
         uses: actions/checkout@v4
 
 #      - name: Login to GHCR
@@ -34,18 +34,21 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Get Respository Name
+        run: echo "IMAGE_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> "$GITHUB_ENV"
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ secrets.DOCKER_USERNAME }}/zerotier-aio-zh
+            ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
           #  ghcr.io/username/app
           # generate Docker tags based on the following events/attributes
           tags: |
             type=raw,value=latest
-            {{date 'YYYY/MM/DD'}}
+            {{date 'YYYY/MM/DD/hh/mm/ss'}}
 #            type=schedule,pattern={{date 'YYYY/MM/DD'}}
 #            type=semver,pattern={{version}}
 #            type=semver,pattern=$()
@@ -67,10 +70,10 @@ jobs:
         id: docker_build_all
         uses: docker/build-push-action@v5
         with:
-          context: ./dockerfile/
-          file: ./dockerfile/Dockerfile
+          context: ./
+          file: ./Dockerfile
           push: true
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/386,linux/arm/v7
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
       - name: all Image digest

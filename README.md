@@ -1,6 +1,4 @@
-# zerotier-aio-zh
-
-**注意，本仓库为汉化仓库，提交ISSUE请前往[原仓库](https://github.com/kmahyyg/ztncui-aio)**
+# Zerotier-Aio-Zh
 
 - [中文](./README.md)
 - [ENGLISH](./README_EN.md)
@@ -8,46 +6,30 @@
 - [Github](https://github.com/niliovo/zerotier-aio-zh)
 - [Docker Hub](https://hub.docker.com/r/niliaerith/zerotier-aio-zh)
 
-# 本项目基于下列项目,汉化 ztncui-aio 并打包镜像
+## 项目说明
+
+> 本项目基于下列项目,汉化 ztncui-aio 并打包镜像
 
 - [zerotier/ZeroTierOne](https://github.niliovo.top/zerotier/ZeroTierOne)
 - [kmahyyg/ztncui-aio](https://github.com/kmahyyg/ztncui-aio)
 - [key-networks/ztncui](https://github.com/key-networks/ztncui)
 
-# 使用指南
+**注意，本仓库为汉化仓库，提交ISSUE请前往[原仓库](https://github.com/kmahyyg/ztncui-aio)**
 
-## Docker-Cli使用指南
+### 支持平台
 
-- armv7(armv7未测试，请自行构建，命令如下)
+- x86_64
+- arm64
+- x86_32(未测试)
+- arm32(未测试)
 
-```
-git clone https://github.com/niliovo/zerotier-aio-zh.git && cd zerotier-aio-zh/dockerfile && docker build -t zerotier-aio-zh .
-```
+> 提示：多平台镜像为QEMU模拟不同平台编译，可能存在问题，如果镜像不可用，请尝试自行编译
 
-- amd64/arm64
-- host模式
+## 使用说明
 
-```sh
-docker run -itd --name zerotier-aio-zh --hostname zerotier-aio-zh --net host --restart always --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun -v /your_path/zerotier-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc -v /your_path/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one -v /your_path/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld -e PUID=0 -e PGID=0 -e TZ=Asia/Shanghai -e AUTOGEN_PLANET=0 -e NODE_ENV=production -e HTTPS_HOST=xxx.xxx.xxx.xxx -e HTTPS_PORT=3443 -e HTTP_PORT=3000 -e HTTP_ALL_INTERFACES=yes -e MYDOMAIN=ztncui.docker.test -e ZTNCUI_PASSWD=YourPassWD -e MYADDR=PublicIP --privileged=true niliaerith/zerotier-aio-zh:latest
+### Docker Compose
 
-```
-
-- bridge模式
-
-```sh
-docker run -itd --name zerotier-aio-zh --hostname zerotier-aio-zh --net bridge -p3000:3000 -p3180:3180 -p3443:3443 -p9993:9993/udp --restart always --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun -v /your_path/zerotier-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc -v /your_path/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one -v /your_path/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld -e PUID=0 -e PGID=0 -e TZ=Asia/Shanghai -e AUTOGEN_PLANET=0 -e NODE_ENV=production -e HTTPS_HOST=xxx.xxx.xxx.xxx -e HTTPS_PORT=3443 -e HTTP_PORT=3000 -e HTTP_ALL_INTERFACES=yes -e MYDOMAIN=ztncui.docker.test -e ZTNCUI_PASSWD=YourPassWD -e MYADDR=PublicIP --privileged=true niliaerith/zerotier-aio-zh:latest
-```
-
-## Docker Compose使用指南
-
-- armv7(armv7构建耗时超过6h导致GitHub Action无法完成构建镜像，请自行构建，命令如下)
-
-```
-git clone https://github.com/niliovo/zerotier-aio-zh.git && cd zerotier-aio-zh/dockerfile && docker build -t zerotier-aio-zh .
-```
-
-- amd64/arm64
-- host模式
+#### host模式
 
 ```compose.yml
   zerotier-aio-zh:
@@ -65,8 +47,6 @@ git clone https://github.com/niliovo/zerotier-aio-zh.git && cd zerotier-aio-zh/d
       - /your_path/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one
       - /your_path/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld
     environment:
-      - PUID=0
-      - PGID=0
       - TZ=Asia/Shanghai
       - AUTOGEN_PLANET=0
       - NODE_ENV=production
@@ -80,7 +60,7 @@ git clone https://github.com/niliovo/zerotier-aio-zh.git && cd zerotier-aio-zh/d
     privileged: true
 ```
 
-- bridge模式
+#### bridge模式
 
 ```compose.yml
   zerotier-aio-zh:
@@ -103,8 +83,6 @@ git clone https://github.com/niliovo/zerotier-aio-zh.git && cd zerotier-aio-zh/d
       - /your_path/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one
       - /your_path/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld
     environment:
-      - PUID=0
-      - PGID=0
       - TZ=Asia/Shanghai
       - AUTOGEN_PLANET=0
       - NODE_ENV=production
@@ -116,6 +94,30 @@ git clone https://github.com/niliovo/zerotier-aio-zh.git && cd zerotier-aio-zh/d
       - ZTNCUI_PASSWD=YourPassWD
       - MYADDR=PublicIP
     privileged: true
+```
+
+### Docker Cli
+
+#### host模式
+
+```sh
+docker run -itd --name zerotier-aio-zh --hostname zerotier-aio-zh --net host --restart always --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun -v /your_path/zerotier-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc -v /your_path/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one -v /your_path/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld -e TZ=Asia/Shanghai -e AUTOGEN_PLANET=0 -e NODE_ENV=production -e HTTPS_HOST=xxx.xxx.xxx.xxx -e HTTPS_PORT=3443 -e HTTP_PORT=3000 -e HTTP_ALL_INTERFACES=yes -e MYDOMAIN=ztncui.docker.test -e ZTNCUI_PASSWD=YourPassWD -e MYADDR=PublicIP --privileged=true niliaerith/zerotier-aio-zh:latest
+
+```
+
+#### bridge模式
+
+```sh
+docker run -itd --name zerotier-aio-zh --hostname zerotier-aio-zh --net bridge -p3000:3000 -p3180:3180 -p3443:3443 -p9993:9993/udp --restart always --cap-add=NET_ADMIN --device /dev/net/tun:/dev/net/tun -v /your_path/zerotier-aio-zh/opt/key-networks/ztncui/etc:/opt/key-networks/ztncui/etc -v /your_path/zerotier-aio-zh/var/lib/zerotier-one:/var/lib/zerotier-one -v /your_path/zerotier-aio-zh/etc/zt-mkworld:/etc/zt-mkworld -e TZ=Asia/Shanghai -e AUTOGEN_PLANET=0 -e NODE_ENV=production -e HTTPS_HOST=xxx.xxx.xxx.xxx -e HTTPS_PORT=3443 -e HTTP_PORT=3000 -e HTTP_ALL_INTERFACES=yes -e MYDOMAIN=ztncui.docker.test -e ZTNCUI_PASSWD=YourPassWD -e MYADDR=PublicIP --privileged=true niliaerith/zerotier-aio-zh:latest
+```
+
+### 自行编译
+
+```
+git clone https://github.com/niliovo/zerotier-aio-zh.git
+cd zerotier-aio-zh
+docker build -t zerotier-aio-zh .
+# 将上述镜像 'niliaerith/zerotier-aio-zh' 替换为 'zerotier-aio-zh'
 ```
 
 ## 变量
@@ -155,15 +157,7 @@ git clone https://github.com/niliovo/zerotier-aio-zh.git && cd zerotier-aio-zh/d
 - `ZTNCUI_PASSWD=YourPassWD` WebUI密码,默认用户名为admin
 - `MYADDR` 公网IP地址，如果未设置将自动检测
 
-- 更多用法详见[kmahyyg/ztncui-aio](https://github.com/kmahyyg/ztncui-aio)
-
-## 支持平台
-
-- amd64
-- arm64
-- armv7(未测试，需自行构建镜像)
-
-- ~~i386(node没有此版本，故不支持)~~
+> 更多用法详见[kmahyyg/ztncui-aio](https://github.com/kmahyyg/ztncui-aio)
 
 # 感谢
 
@@ -172,3 +166,13 @@ git clone https://github.com/niliovo/zerotier-aio-zh.git && cd zerotier-aio-zh/d
 - [key-networks/ztncui](https://github.com/key-networks/ztncui)
 - [GitHub](https://github.com/)
 - [Docker Hub](https://hub.docker.com/)
+
+## STAR 历史
+
+<a href="https://star-history.com/#niliovo/zerotier-aio-zh&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=niliovo/zerotier-aio-zh&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=niliovo/zerotier-aio-zh&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=niliovo/zerotier-aio-zh&type=Date" />
+  </picture>
+</a>

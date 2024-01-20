@@ -8,8 +8,8 @@ LABEL Description="ztncui (a ZeroTier network controller user interface) + ZeroT
 
 # BUILD ZTNCUI IN FIRST STAGE
 WORKDIR /build
-COPY ZTNCUI.sh .
-RUN chmod a+x ZTNCUI.sh && ./ZTNCUI.sh
+COPY ztncui.sh .
+RUN chmod a+x ztncui.sh && ./ztncui.sh
 
 # BUILD GO UTILS
 FROM golang:bullseye AS gobuilder
@@ -28,8 +28,8 @@ FROM debian:bullseye-slim AS runner
 ENV DEBIAN_FRONTEND=noninteractive
 ENV AUTOGEN_PLANET=0
 WORKDIR /tmp
-COPY RUNNER.sh .
-RUN chmod a+x RUNNER.sh && bash RUNNER.sh
+COPY runner.sh .
+RUN chmod a+x runner.sh && bash runner.sh
 
 WORKDIR /opt/key-networks/ztncui
 COPY --from=jsbuilder /build/artifact.zip .
