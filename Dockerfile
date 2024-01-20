@@ -1,4 +1,4 @@
-FROM node:slim AS jsbuilder
+FROM debian:bookworm-slim AS jsbuilder
 ENV NODEJS_MAJOR=18
 ENV DEBIAN_FRONTEND=noninteractive
 
