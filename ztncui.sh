@@ -7,6 +7,7 @@ apt install -y nodejs --no-install-recommends
 rm -f node_inst.sh
 git clone https://github.com/kmahyyg/ztncui-aio.git tmp
 mv tmp/* /build
+npm config set registry https://registry.npm.taobao.org
 sed -i "s|git clone https://github.com/key-networks/ztncui||g" build-ztncui.sh
 
 sed -i "s|Debugging: Print EnvVar:|Debugging: 输出环境变量:|g" start_firsttime_init.sh
