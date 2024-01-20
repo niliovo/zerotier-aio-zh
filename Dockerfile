@@ -1,10 +1,6 @@
 FROM debian:latest AS jsbuilder
-ENV NODEJS_MAJOR=20
+ENV NODEJS_MAJOR=18
 ENV DEBIAN_FRONTEND=noninteractive
-
-LABEL org.opencontainers.image.source="https://github.com/kmahyyg/ztncui-aio"
-LABEL MAINTAINER="Key Networks https://key-networks.com"
-LABEL Description="ztncui (a ZeroTier network controller user interface) + ZeroTier network controller"
 
 # BUILD ZTNCUI IN FIRST STAGE
 WORKDIR /build
