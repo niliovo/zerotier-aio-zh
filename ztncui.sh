@@ -1,6 +1,6 @@
 #!/bin/bash
 apt update -y
-apt install curl gnupg2 ca-certificates zip unzip build-essential git --no-install-recommends -y
+apt install gnupg2 ca-certificates zip unzip build-essential git python3 --no-install-recommends -y
 #curl -sL -o node_inst.sh https://deb.nodesource.com/setup_${NODEJS_MAJOR}.x
 #bash node_inst.sh
 apt install -y nodejs
