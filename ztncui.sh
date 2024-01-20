@@ -1,9 +1,9 @@
 #!/bin/bash
 apt update -y
-apt install gnupg2 ca-certificates zip unzip build-essential python3 git sudo curl --no-install-recommends -y
+apt install curl gnupg2 ca-certificates zip unzip build-essential git --no-install-recommends -y
 #curl -sL -o node_inst.sh https://deb.nodesource.com/setup_${NODEJS_MAJOR}.x
 #bash node_inst.sh
-sudo apt install -y nodejs
+apt install -y nodejs
 #rm -f node_inst.sh
 git clone https://github.com/kmahyyg/ztncui-aio.git tmp
 mv tmp/* /build
