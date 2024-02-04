@@ -7,7 +7,7 @@ apt install -y nodejs --no-install-recommends
 rm -f node_inst.sh
 git clone https://github.com/kmahyyg/ztncui-aio.git tmp
 mv tmp/* /build
-npm config set registry https://registry.npm.taobao.org
+npm config set registry http://registry.npm.taobao.org
 sed -i "s|git clone https://github.com/key-networks/ztncui||g" build-ztncui.sh
 
 sed -i "s|Debugging: Print EnvVar:|Debugging: 输出环境变量:|g" start_firsttime_init.sh
@@ -15,13 +15,13 @@ sed -i "s|Set Your IP Address to continue.|设置你的IP地址以继续|g" star
 sed -i "s|If you don't do that, I will automatically detect.|如果你不那么做，我将自动检测|g" start_firsttime_init.sh
 sed -i "s|YOUR IP:|你的IP地址:|g" start_firsttime_init.sh
 sed -i "s|YOUR DOMAIN:|你的域名:|g" start_firsttime_init.sh
-sed -i "s|ALREADY_INITED detected.|检测到 ALREADY_INITED|g" start_firsttime_init.sh
+sed -i "s|ALREADY_INITED detected.|检测到 ALREADY_INITED 文件|g" start_firsttime_init.sh
 sed -i "s|AUTOGEN_PLANET is 0. Set to inited and exit.|AUTOGEN_PLANET 为 0，设置为已启动并退出。|g" start_firsttime_init.sh
 sed -i "s|planet successfully generated.|ZeroTier 行星成功生成。|g" start_firsttime_init.sh
 sed -i "s|planet generator failed. exit now.|ZeroTier 行星生成失败。正在退出。|g" start_firsttime_init.sh
 sed -i "s|mkworld successfully ran.|mkworld 成功运行。|g" start_firsttime_init.sh
-sed -i "s|identity.public does NOT exit, cannot generate planet file.|identity.public 不退出，无法生成行星文件。|g" start_firsttime_init.sh
-sed -i "s|/etc/zt-mkworld/mkworld.config.json not exists. exit now.|/etc/zt-mkworld/mkworld.config.json 不存在。正在退出。|g" start_firsttime_init.sh
+sed -i "s|identity.public does NOT exit, cannot generate planet file.|identity.public 不存在，无法生成行星文件。|g" start_firsttime_init.sh
+sed -i "s|/etc/zt-mkworld/mkworld.config.json not exists. exit now.|/etc/zt-mkworld/mkworld.config.json 不存在，正在退出。|g" start_firsttime_init.sh
 
 sed -i "s|Set Your IP Address to continue.|设置你的IP地址以继续|g" start_ztncui.sh
 sed -i "s|If you don't do that, I will automatically detect.|如果你不那么做，我将自动检测|g" start_ztncui.sh
@@ -82,7 +82,7 @@ sed -i "s|error: 'Error creating network '|error: '创建网络时出错 '|g" zt
 sed -i "s|error: 'Error deleting IP Assignment Pool for network '|error: '删除网络的IP分配池时出错 '|g" ztncui/src/controllers/networkController.js
 sed -i "s|error: 'Error deleting network '|error: '删除网络时出错 '|g" ztncui/src/controllers/networkController.js
 sed -i "s|error: 'Error deleting route for network '|error: '删除网络的路由时出错 '|g" ztncui/src/controllers/networkController.js
-sed -i "s|error: 'ERROR getting ZT status: '|error: '获取ZT状态时出错: '|g" ztncui/src/controllers/networkController.js
+sed -i "s|error: 'ERROR getting ZT status: '|error: '获取Zerotier状态时出错: '|g" ztncui/src/controllers/networkController.js
 sed -i "s|error: 'Error resolving detail for member '|error: '解析成员的详细信息时出错 '|g" ztncui/src/controllers/networkController.js
 sed -i "s|error: 'Error resolving detail for network '|error: '解析网络的详细信息时出错 '|g" ztncui/src/controllers/networkController.js
 sed -i "s|error: 'Error resolving network '|error: '解析网络时出错 '|g" ztncui/src/controllers/networkController.js
@@ -152,7 +152,7 @@ sed -i "s|network controller UI|网络控制器用户界面|g" ztncui/src/views/
 
 sed -i "s|Logout|注销|g" ztncui/src/views/head_layout.pug
 sed -i "s|network controller UI by|网络控制器用户界面汉化作者|g" ztncui/src/views/index.pug
-sed -i "s|a(href='https://key-networks.com' target='_blank') Key Networks|a(href='https://github.com/niliovo/zerotier-aio-zh' target='_blank') 倪狸|g" ztncui/src/views/index.pug
+sed -i "s|a(href='https://key-networks.com' target='_blank') Key Networks|a(href='https://github.com/niliovo/zerotier-aio-zh' target='_blank') Nili|g" ztncui/src/views/index.pug
 sed -i "s|This network controller has a ZeroTier address of|该控制器的ZeroTier地址为|g" ztncui/src/views/index.pug
 sed -i "s|ZeroTier version|ZeroTier版本为|g" ztncui/src/views/index.pug
 sed -i "s|List all networks on this network controller|列出该网络控制器上的所有网络|g" ztncui/src/views/index.pug
@@ -229,7 +229,7 @@ sed -i "s|Refresh|刷新|g" ztncui/src/views/network_detail.pug
 sed -i "s|Detail for network|网络详细信息|g" ztncui/src/views/network_detail.pug
 sed -i "s|) Networks|) 网络|g" ztncui/src/views/network_detail.pug
 
-sed -i "s|'Invalid network CIDR';|'网络CIDR不可用';|g" ztncui/src/views/network_easy.pug
+sed -i "s|'Invalid network CIDR';|'网络 CIDR 不可用';|g" ztncui/src/views/network_easy.pug
 sed -i "s|Help|帮助|g" ztncui/src/views/network_easy.pug
 sed -i "s|Please note that this utility only supports IPv4 at this stage.|请注意，此应用程序在此阶段仅支持IPv。|g" ztncui/src/views/network_easy.pug
 sed -i "s|Use the following button to automatically generate a random network address, otherwise fill in the network address CIDR manually and the IP assignment pool will be automatically calculated for you.  You can manually alter these calculated values.|使用以下按钮可自动生成随机网络地址，否则请手动填写网络地址 CIDR，IP 分配池将为您自动计算。 您可以手动更改这些计算值。|g" ztncui/src/views/network_easy.pug
