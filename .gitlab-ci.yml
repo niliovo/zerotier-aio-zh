@@ -1,0 +1,40 @@
+# https://docs.gitlab.com/ee/ci/yaml/
+# https://docs.gitlab.com/ee/ci/variables/predefined_variables.html
+# https://docs.gitlab.com/ee/ci/migration/github_actions.html
+# https://gitlab.com/gitlab-org/gitlab/-/tree/master/lib/gitlab/ci/templates/Jobs
+
+stages:
+  - build
+
+variables:
+  PUB_DOCKER_USER: "niliaerith"
+  PUB_DOCKER_IMAGE_NAME: $PUB_DOCKER_USER/$CI_PROJECT_NAME
+  PRI_DOCKER_USER: "nili"
+  PRI_DOCKER_IMAGE_NAME: $PRI_DOCKER_URL/$CI_PROJECT_NAME
+
+构建Docker镜像:
+  stage: build
+  # Use the official docker image.
+  tags:
+    - gxy
+  image: docker:dind
+  #image: docker:latest
+  #image: docker:cli
+  #services:
+  #  - name: docker:dind
+  #    command: ["--registry-mirror=https://dhcr-cf.niliovo.top"]
+  before_script:
+    - docker run --privileged --rm tonistiigi/binfmt --install all
+    - docker buildx create --use --name mybuilder
+    - docker login -u "$PRI_DOCKER_USER" -p "$DOCKER_PASSWORD" $PRI_DOCKER_URL
+    - TIME=$(TZ='UTC-8' date +'%Y%m%d-%H-%M-%S')
+  # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
+  # Default branch is also tagged with `latest`
+  script:
+    - docker buildx build --file Dockerfile --progress=plain --tag "$PRI_DOCKER_IMAGE_NAME:latest" --tag "$PRI_DOCKER_IMAGE_NAME:$TIME" --platform linux/amd64,linux/arm64 --push .
+    #linux/amd64,linux/arm64,linux/386,linux/arm/v7
+  # Run this job in a branch where a Dockerfile exists
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      exists:
+        - Dockerfile

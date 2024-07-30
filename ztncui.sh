@@ -1,14 +1,18 @@
 #!/bin/bash
+#sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources
 apt update -y
 apt install curl gnupg2 ca-certificates zip unzip build-essential git --no-install-recommends -y
+
 curl -sL -o node_inst.sh https://deb.nodesource.com/setup_${NODEJS_MAJOR}.x
 bash node_inst.sh
 apt install -y nodejs --no-install-recommends
 rm -f node_inst.sh
+
 git clone https://github.com/kmahyyg/ztncui-aio.git tmp
 mv tmp/* /build
 npm config set registry https://registry.npmmirror.com
 #npm config set registry http://registry.npm.taobao.org
+
 sed -i "s|git clone https://github.com/key-networks/ztncui||g" build-ztncui.sh
 
 sed -i "s|Debugging: Print EnvVar:|Debugging: 输出环境变量:|g" start_firsttime_init.sh
