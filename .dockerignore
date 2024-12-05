@@ -1,6 +1,7 @@
 .dockerignore
 .git
 .gitignore
+*/.DS_Store
 Dockerfile
 .gitlab-ci.yml
 LICENSE
