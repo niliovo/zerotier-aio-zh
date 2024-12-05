@@ -35,7 +35,7 @@ variables:
     - cd ../tmp
     - find . -mindepth 1 -path './.git' -prune -o -exec rm -rf {} +
     - cd ../$CI_PROJECT_NAME
-    - rsync -av --include='.*' --exclude='.git/*' . ../tmp
+    - rsync -av --include='.*' --exclude='.git/*' --exclude='.gitlab-ci.yml' . ../tmp
     - cd ../tmp
     - git add -A
     - git commit -sm "Gitlab CI Auto Update $TIME"
