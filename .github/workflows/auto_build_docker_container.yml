@@ -2,13 +2,13 @@ name: 自动构建docker镜像
 
 on:
   schedule:
-    - cron: "36 19 * * 0"
+    - cron: "36 18 * * 0"
   #watch:
   #  types: started
-  workflow_dispatch:
+#  workflow_dispatch:
 
-#  push:
-#    branches: [ main ]
+  push:
+    branches: [ main ]
 #  pull_request:
 #    branches: [ main ]
 
@@ -28,11 +28,25 @@ jobs:
 #          username: ${{ github.repository_owner }}
 #          password: ${{ secrets.GITHUB_TOKEN }}
 
+#      - name: Login to GitHub Container Registry
+#        uses: docker/login-action@v3
+#        with:
+#          registry: ghcr.io
+#          username: ${{ github.actor }}
+#          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+#      - name: Login to Private Docker Registry
+#        uses: docker/login-action@v3
+#        with:
+#          registry: ${{ secrets.DOCKER_REGISTRY }}
+#          username: ${{ secrets.PRIVATE_USERNAME }}
+#          password: ${{ secrets.PRIVATE_PASSWORD }}
 
       - name: Get Respository Name
         run: echo "IMAGE_NAME=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> "$GITHUB_ENV"
@@ -44,8 +58,7 @@ jobs:
           # list of Docker images to use as base name for tags
           images: |
             ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
-          #  ghcr.io/username/app
-          # generate Docker tags based on the following events/attributes
+#            ${{ secrets.DOCKER_REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest
             {{date 'YYYY/MM/DD/hh/mm/ss'}}
@@ -58,7 +71,6 @@ jobs:
 #            type=semver,pattern={{major}}.{{minor}}
 #            type=semver,pattern={{major}}
 
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -68,13 +80,14 @@ jobs:
 
       - name: Build and push all
         id: docker_build_all
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
-          context: ./
-          file: ./Dockerfile
+          context: .
+          file: Dockerfile
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+#          target:
       - name: all Image digest
         run: echo ${{ steps.docker_build_all.outputs.digest }}
