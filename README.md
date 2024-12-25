@@ -10,7 +10,7 @@
 
 > 本项目基于下列项目,汉化 ztncui-aio 并打包镜像
 
-- [zerotier/ZeroTierOne](https://github.niliovo.top/zerotier/ZeroTierOne)
+- [zerotier/ZeroTierOne](https://github.com/zerotier/ZeroTierOne)
 - [kmahyyg/ztncui-aio](https://github.com/kmahyyg/ztncui-aio)
 - [key-networks/ztncui](https://github.com/key-networks/ztncui)
 
@@ -162,7 +162,7 @@ docker build -t zerotier-aio-zh .
 
 # 感谢
 
-- [zerotier/ZeroTierOne](https://github.niliovo.top/zerotier/ZeroTierOne)
+- [zerotier/ZeroTierOne](https://github.com/zerotier/ZeroTierOne)
 - [kmahyyg/ztncui-aio](https://github.com/kmahyyg/ztncui-aio)
 - [key-networks/ztncui](https://github.com/key-networks/ztncui)
 - [GitHub](https://github.com/)
