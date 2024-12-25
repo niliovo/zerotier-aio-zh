@@ -123,7 +123,8 @@ docker build -t zerotier-aio-zh .
 
 ## 变量
 
-- `AUTOGEN_PLANET=0`如果设置为 1，将使用此节点身份生成planet文件并放入httpfs文件夹以在外部提供服务。如果设置为 2，将使用`/etc/zt-mkworld/mkworld.config.json`. 如果设置为 0，则不执行任何操作(默认为0)。
+- 如果设置为`AUTOGEN_PLANET=1`，将使用此节点身份生成planet文件并放入httpfs文件夹以在外部提供服务。如果设置为`AUTOGEN_PLANET=2`，将使用`/etc/zt-mkworld/mkworld.config.json`
+- 设置为`AUTOGEN_PLANET=0` 的容器可以不开放端口，将 `AUTOGEN_PLANET=1或2` 容器生成的`/your_path/zerotier-aio-zh/var/lib/zerotier-one/planet`文件放入 `AUTOGEN_PLANET=0` 容器的`/your_path/zerotier-aio-zh/var/lib/zerotier-one` 路径当作Zerotier客户端使用
 - `mkworld,config.json`参考如下
 
 ```json
