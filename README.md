@@ -163,7 +163,6 @@ docker build -t zerotier-aio-zh .
 
 # 感谢
 
-- [YxVM](https://yxvm.com/)提供稳定云服务
 - [zerotier/ZeroTierOne](https://github.com/zerotier/ZeroTierOne)
 - [kmahyyg/ztncui-aio](https://github.com/kmahyyg/ztncui-aio)
 - [key-networks/ztncui](https://github.com/key-networks/ztncui)
