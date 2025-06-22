@@ -3,8 +3,8 @@ name: 自动构建docker镜像
 on:
   schedule:
     - cron: "36 18 * * 0"
-  #watch:
-  #  types: started
+  watch:
+    types: started
 #  workflow_dispatch:
 
   push:
