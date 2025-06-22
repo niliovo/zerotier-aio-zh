@@ -17,6 +17,7 @@ COPY --from=jsbuilder /build/build-gobinaries.sh /buildsrc/build-gobinaries.sh
 ENV CGO_ENABLED=0
 RUN apt update -y && \ 
     apt install zip -y && \
+    sed -i "7i go mod tidy" /buildsrc/build-gobinaries.sh && \
     bash /buildsrc/build-gobinaries.sh
 
 # START RUNNER
